@@ -94,6 +94,7 @@ public class MultipleOutputFormat<K extends WritableComparable<?>, V extends Wri
                 this.recordWriters.put(baseName, rw);
             }
             // 这里实际仍然为通过LineRecordWriter来实现的
+            value = null;
             rw.write(key, value);
         }
 
@@ -136,11 +137,7 @@ public class MultipleOutputFormat<K extends WritableComparable<?>, V extends Wri
 
         /** 获取生成的文件的后缀名 **/
         private String generateFileNameForKeyValue(K key, V value, Configuration configuration) {
-            char c = key.toString().toLowerCase().charAt(0);
-            if (c >= 'a' && c <= 'z') {
-                return c + ".txt";
-            }
-            return "other.txt";
+            return value.toString() + ".txt";
         }
     }
 }

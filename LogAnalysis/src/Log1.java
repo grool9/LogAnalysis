@@ -90,7 +90,7 @@ public class Log1 {
             int sum3 = 0;//500
             boolean isEachHour = false;
 
-            Text valueWord = new Text();
+            Text valueWord = new Text("1");
             for (Text value : values) {
                 String[] tokens = value.toString().split(":");
                 if(tokens.length == 1) {

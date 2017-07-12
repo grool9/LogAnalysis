@@ -27,6 +27,10 @@ public class Log3 {
 
             // get time and url
             String[] timeToken = tokens[1].split(":");
+
+            String url = tokens[4];
+            if(url.equals("null"))return; // remove ip - null
+
             int hour = Integer.parseInt(timeToken[1]);
             int minute = Integer.parseInt(timeToken[2]);
             int second = Integer.parseInt(timeToken[3]);
@@ -53,18 +57,18 @@ public class Log3 {
                 time1 += "0";
             }
             time1 += second;
+
             String time2 = hour2 + ":";
             if(minute2 < 10) {
                 time2 += "0" ;
             }
             time2 += minute2 + ":";
             if(second2 < 10) {
-                time2 += "0" + second2;
+                time2 += "0";
             }
             time2 += second2;
 
             String time = time1 + "-" + time2;
-            String url = tokens[4];
 
             // each second
             String kString = "{" + time ;
@@ -124,7 +128,7 @@ public class Log3 {
             int sum = 0;
             boolean isEachSecond = false;
 
-            Text valueWord = new Text();
+            Text valueWord = new Text("our-category-query");
             for (Text value : values) {
                 String[] tokens = value.toString().split(":");
                 if(tokens.length == 1) {
