@@ -22,11 +22,12 @@ public class Log1 {
             String[] tokens = line.split("\\s+");
             int number = tokens.length;
 
-            // get time and state
+            // get time
             int hour = Integer.parseInt(tokens[1].split(":")[1]);
             String time1 = hour + "";
             String time2 = (hour + 1) % 24 + "";
             String time = time1 + ":00-" + time2 + ":00";
+            // get state
             String state = tokens[number-3];
 
             // each hour
@@ -90,7 +91,6 @@ public class Log1 {
             int sum3 = 0;//500
             boolean isEachHour = false;
 
-            Text valueWord = new Text("1");
             for (Text value : values) {
                 String[] tokens = value.toString().split(":");
                 if(tokens.length == 1) {
@@ -106,16 +106,20 @@ public class Log1 {
                     }
                 }
             }
+
+            Text keyWord = new Text("1");
+            Text valueWord = new Text();
+
             if(!isEachHour) {
-                key.set(key.toString() + ":" + sum);
-                context.write(key, valueWord);
+                valueWord.set(key.toString() + ":" + sum);
+                context.write(keyWord, valueWord);
             }
             else {
                 String[] t = key.toString().split(";");
-                String kString = t[1] + " 200:" + sum1 + " 404:"
+                String vString = t[1] + " 200:" + sum1 + " 404:"
                         + sum2 + " 500:" + sum3;
-                key.set(kString);
-                context.write(key, valueWord);
+                valueWord.set(vString);
+                context.write(keyWord, valueWord);
             }
         }
     }

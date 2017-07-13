@@ -94,7 +94,7 @@ public class MultipleOutputFormat<K extends WritableComparable<?>, V extends Wri
                 this.recordWriters.put(baseName, rw);
             }
             // 这里实际仍然为通过LineRecordWriter来实现的
-            value = null;
+            key = null; //
             rw.write(key, value);
         }
 
@@ -103,10 +103,8 @@ public class MultipleOutputFormat<K extends WritableComparable<?>, V extends Wri
             Configuration conf = context.getConfiguration();
 
             boolean isCompressed = getCompressOutput(context);
-            // 在LineRecordWriter的实现中，分隔符是通过变量如下方式指定的：
-            // public static String SEPERATOR = "mapreduce.output.textoutputformat.separator";
-            // String keyValueSeparator= conf.get(SEPERATOR, "\t");
-            // 这里给了个逗号作为分割
+
+            // 分割
             String keyValueSeparator = "";
 
             RecordWriter<K, V> rw = null;
@@ -137,7 +135,7 @@ public class MultipleOutputFormat<K extends WritableComparable<?>, V extends Wri
 
         /** 获取生成的文件的后缀名 **/
         private String generateFileNameForKeyValue(K key, V value, Configuration configuration) {
-            return value.toString() + ".txt";
+            return key.toString() + ".txt";
         }
     }
 }
