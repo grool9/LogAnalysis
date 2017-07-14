@@ -2,8 +2,8 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
-
 import java.io.IOException;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 /**
  * Created by hadoop on 7/13/17.
@@ -14,55 +14,35 @@ public class Predict {
                 throws IOException, InterruptedException {
             FileSplit fileSplit = (FileSplit) context.getInputSplit();
             String fileName = (fileSplit.getPath().getName().split("\\.txt"))[0];
-
-            int day = Integer.parseInt(fileName.substring(0,2));
-            if(day == 22)return;
-
             String line = value.toString();
+
+            SimpleRegression simpleRegression = new SimpleRegression(true);
             String[] tokens = line.split("\\s+");
-            if(tokens.length < 2) return;
+            int number = tokens.length;
+            if(!tokens[number - 1].split(":")[0].equals("22"))return;
 
-            String time = tokens[0];
-            String[] t = tokens[1].split(":");
-            String url = t[0];
-            int number = Integer.parseInt(t[1]);
+            double[][] array = new double[number - 1][2];
+            for(int i = 1; i < number - 1 ; i++) {
+                String[] t = tokens[i].split(":");
+                array[i-1][0] = Double.parseDouble(t[0]);
+                array[i-1][1] = Double.parseDouble(t[1]);
+            }
 
-            Text keyWord = new Text();
-            Text valueWord = new Text("1");
+            simpleRegression.addData(array);
+            int predict = new Double(simpleRegression.predict(22)).intValue();
+            String real = tokens[tokens.length-1].split(":")[1];
 
-            String kString = time + "#" + url;
-            String vString = "" + (number * (day - 7));
-
-            keyWord.set(kString);
-            valueWord.set(vString);
+            Text keyWord = new Text(fileName);
+            Text valueWord = new Text(predict + " " + real);
             context.write(keyWord, valueWord);
         }
     }
 
     public static class MyReducer extends Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            int sum = 0;
-            for (Text value : values) {
-                sum += Integer.parseInt(value.toString());
+            for(Text value: values) {
+                context.write(key, value);
             }
-            sum /= 105;
-
-            Text keyWord = new Text();
-            Text valueWord = new Text();
-
-            String[] tokens = key.toString().split("#");
-            String time = tokens[0];
-            String url = tokens[1];
-            String vString = time + " " + url + ":" + sum;
-
-            String kString = url;
-            if(url.charAt(0) == '/')kString = kString.substring(1);
-            kString = kString.replace("/", "-");
-
-            keyWord.set(kString);
-            valueWord.set(vString);
-
-            context.write(keyWord, valueWord);
         }
     }
 }

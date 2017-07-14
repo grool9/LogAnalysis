@@ -97,15 +97,12 @@ public class Log5 {
                 context.write(new Text(url), new Text(out.toString()));
                 postingList = new ArrayList<String>();
             }
+
             currentItem = new Text(keyWord);
             postingList.add(valueWord.toString());
         }
 
         public void cleanup(Context context) throws IOException, InterruptedException {
-            time = keyWord.toString().split(" ")[0];
-            url = keyWord.toString().split(" ")[1];
-            if(!url.equals("null"))url = url.substring(1).replace("/", "-");
-
             StringBuilder out = new StringBuilder(time);
             for(String p: postingList) {
                 out.append(" ");
