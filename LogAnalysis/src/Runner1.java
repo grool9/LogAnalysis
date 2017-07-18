@@ -2,6 +2,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -13,42 +14,84 @@ import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Created by hadoop on 7/12/17.
  */
 public class Runner1 {
     public static void main(String[] args) throws Exception {
-        // task1
-        Configuration jobconf1 = new Configuration();
-        Job job1 = Job.getInstance(jobconf1, "Log1");
-        job1.setJarByClass(Log1.class);
-        job1.setMapperClass(Log1.Log1Mapper.class);
-        job1.setCombinerClass(Log1.Log1Combiner.class);
-        job1.setReducerClass(Log1.Log1Reducer.class);
-        job1.setOutputKeyClass(Text.class);
-        job1.setOutputValueClass(Text.class);
+        Path in = new Path(args[0]);
+        Path out = new Path(args[1]);
+//        Path out2 = new Path(args[2]);
+//        Path out3 = new Path(args[3]);
+        FileSystem fileSystem = FileSystem.get(new URI(in.toString()), new Configuration());
+        if (fileSystem.exists(out)) {
+            fileSystem.delete(out, true);
+        }
 
-        FileInputFormat.addInputPath(job1, new Path(args[0]));
+//        // task1
+//        Configuration jobconf1 = new Configuration();
+//        Job job1 = Job.getInstance(jobconf1, "Log1");
+//        job1.setJarByClass(Log1.class);
+//        job1.setMapperClass(Log1.Log1Mapper.class);
+//        job1.setCombinerClass(Log1.Log1Combiner.class);
+//        job1.setReducerClass(Log1.Log1Reducer.class);
+//        job1.setOutputKeyClass(Text.class);
+//        job1.setOutputValueClass(Text.class);
+//
+//        FileInputFormat.addInputPath(job1, new Path(args[0]));
+//        // output
+//        job1.setOutputFormatClass(MultipleOutputFormat.class);
+//        FileOutputFormat.setOutputPath(job1, new Path(args[1]));
+//        job1.waitForCompletion(true);
+
+//        // task2
+//        Configuration jobconf2 = new Configuration();
+//        Job job2 = Job.getInstance(jobconf2, "Log2");
+//        job2.setJarByClass(Log2.class);
+//        job2.setMapperClass(Log2.Log2Mapper.class);
+//        job2.setCombinerClass(Log2.Log2Combiner.class);
+//        job2.setReducerClass(Log2.Log2Reducer.class);
+//        job2.setOutputKeyClass(Text.class);
+//        job2.setOutputValueClass(IntWritable.class);
+//
+//        FileInputFormat.addInputPath(job2, in);
+//        // output
+//        job2.setOutputFormatClass(MultipleOutputFormat.class);
+//        FileOutputFormat.setOutputPath(job2, out);
+//        job2.waitForCompletion(true);
+
+//        // task3
+//        Configuration jobconf3 = new Configuration();
+//        Job job3 = Job.getInstance(jobconf3, "Log3");
+//        job3.setJarByClass(Log3.class);
+//        job3.setMapperClass(Log3.Log3Mapper.class);
+//        job3.setCombinerClass(Log3.Log3Combiner.class);
+//        job3.setReducerClass(Log3.Log3Reducer.class);
+//        job3.setOutputKeyClass(Text.class);
+//        job3.setOutputValueClass(Text.class);
+//
+//        FileInputFormat.addInputPath(job3, new Path(args[0]));
+//        // output
+//        job3.setOutputFormatClass(MultipleOutputFormat.class);
+//        FileOutputFormat.setOutputPath(job3, new Path(args[2]));
+//        job3.waitForCompletion(true);
+
+        // task4
+        Configuration jobconf4 = new Configuration();
+        Job job4 = Job.getInstance(jobconf4, "Log4");
+        job4.setJarByClass(Log4.class);
+        job4.setMapperClass(Log4.Log4Mapper.class);
+        job4.setCombinerClass(Log4.Log4Combiner.class);
+        job4.setReducerClass(Log4.Log4Reducer.class);
+        job4.setOutputKeyClass(Text.class);
+        job4.setOutputValueClass(Text.class);
+
+        FileInputFormat.addInputPath(job4, in);
         // output
-        job1.setOutputFormatClass(MultipleOutputFormat.class);
-        FileOutputFormat.setOutputPath(job1, new Path(args[1]));
-        job1.waitForCompletion(true);
-
-        // task3
-        Configuration jobconf3 = new Configuration();
-        Job job3 = Job.getInstance(jobconf3, "Log3");
-        job3.setJarByClass(Log3.class);
-        job3.setMapperClass(Log3.Log3Mapper.class);
-        job3.setCombinerClass(Log3.Log3Combiner.class);
-        job3.setReducerClass(Log3.Log3Reducer.class);
-        job3.setOutputKeyClass(Text.class);
-        job3.setOutputValueClass(Text.class);
-
-        FileInputFormat.addInputPath(job3, new Path(args[0]));
-        // output
-        job3.setOutputFormatClass(MultipleOutputFormat.class);
-        FileOutputFormat.setOutputPath(job3, new Path(args[2]));
-        job3.waitForCompletion(true);
+        job4.setOutputFormatClass(MultipleOutputFormat.class);
+        FileOutputFormat.setOutputPath(job4, out);
+        job4.waitForCompletion(true);
     }
 }
