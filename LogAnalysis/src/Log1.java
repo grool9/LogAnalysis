@@ -2,13 +2,8 @@
  * Created by hadoop on 2017/7/10.
  */
 import java.io.IOException;
-
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.*;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Log1 {
     public static class Log1Mapper extends Mapper<Object, Text, Text, Text> {
@@ -84,6 +79,9 @@ public class Log1 {
     }
 
     public static class Log1Reducer extends Reducer<Text, Text, Text, Text> {
+        Text keyWord = new Text("1");
+        Text valueWord = new Text();
+
         public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             int sum = 0;
             int sum1 = 0;//200
@@ -107,20 +105,15 @@ public class Log1 {
                 }
             }
 
-            Text keyWord = new Text("1");
-            Text valueWord = new Text();
-
             if(!isEachHour) {
                 valueWord.set(key.toString() + ":" + sum);
-                context.write(keyWord, valueWord);
             }
             else {
-                String[] t = key.toString().split(";");
-                String vString = t[1] + " 200:" + sum1 + " 404:"
+                String vString = key.toString().substring(1) + " 200:" + sum1 + " 404:"
                         + sum2 + " 500:" + sum3;
                 valueWord.set(vString);
-                context.write(keyWord, valueWord);
             }
+            context.write(keyWord, valueWord);
         }
     }
 }

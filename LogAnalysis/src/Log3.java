@@ -15,13 +15,12 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;
 
 public class Log3 {
-    public static class Log3Mapper extends Mapper<Object, Text, Text, Text> {
+    public static class Log3Mapper extends Mapper<Object, Text, Text, IntWritable> {
+        Text keyWord = new Text();
+        IntWritable valueWord = new IntWritable(1);
+
         public void map(Object key, Text value, Context context)
                 throws IOException, InterruptedException {
-            Text keyWord = new Text();
-
-            Text valueCount = new Text("1");
-
             String line = value.toString();
             String[] tokens = line.split("\\s+");
 
@@ -69,58 +68,52 @@ public class Log3 {
 
             String time = time1 + "-" + time2;
 
-            // each second
-            String kString = "{" + time + "#" + url ;
+            // url#time, 1
+            String kString = url + "#" + time ;
             keyWord.set(kString);
-            context.write(keyWord, valueCount);
+            context.write(keyWord, valueWord);
 
-            // all time
+            // url, 1
             keyWord.set(url);
-            context.write(keyWord, valueCount);
+            context.write(keyWord, valueWord);
         }
     }
 
-    public static class Log3Combiner extends Reducer<Text, Text, Text, Text> {
-        public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+    public static class Log3Combiner extends Reducer<Text, IntWritable, Text, IntWritable> {
+        public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             int sum = 0;
-            for (Text value : values) {
-                sum += Integer.parseInt(value.toString());
+            for (IntWritable value : values) {
+                sum += value.get();
             }
-            Text valueWord = new Text(""+sum);
+            IntWritable valueWord = new IntWritable(sum);
             context.write(key, valueWord);
         }
     }
 
-    public static class Log3Reducer extends Reducer<Text, Text, Text, Text> {
-        public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            int sum = 0;
-            for (Text value : values) {
-                sum += Integer.parseInt(value.toString());
-            }
+    public static class Log3Reducer extends Reducer<Text, IntWritable, Text, Text> {
+        Text keyWord = new Text();
+        Text valueWord = new Text();
 
-            Text keyWord = new Text();
-            Text valueWord = new Text();
+        public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+            int sum = 0;
+            for (IntWritable value : values) {
+                sum += value.get();
+            }
 
             String[] tokens = key.toString().split("#");
-            String kString = "";
-            String vString = "";
-            if(tokens.length == 1) {
-                String url = key.toString();
-                kString = url.substring(1);
-                kString = kString.replace("/", "-");
-                vString = url + ":" + sum;
-            }
-            else {
-                String time = tokens[0].split("\\{")[1];
-                String url = tokens[1];
-                kString = url.substring(1);
-                kString = kString.replace("/", "-");
-                vString = time + " " + url + ":" + sum;
-            }
+            String url = tokens[0];
 
+            String kString = url;
+            if(kString.charAt(0) == '/')kString = kString.substring(1);
+            kString = kString.replace("/", "-");
             keyWord.set(kString);
-            valueWord.set(vString);
 
+            if (tokens.length == 1) {
+                valueWord.set(url + ":" + sum);
+            } else {
+                String time = tokens[1];
+                valueWord.set(time + " " + url + ":" + sum);
+            }
             context.write(keyWord, valueWord);
         }
     }
