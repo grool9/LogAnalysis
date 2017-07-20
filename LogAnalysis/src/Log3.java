@@ -46,7 +46,12 @@ public class Log3 {
                 }
             }
 
-            String time1 = hour + ":";
+            // time1
+            String time1 = "";
+            if(hour < 10) {
+                time1 += "0";
+            }
+            time1 += hour + ":";
             if(minute < 10) {
                 time1 += "0";
             }
@@ -56,7 +61,12 @@ public class Log3 {
             }
             time1 += second;
 
-            String time2 = hour2 + ":";
+            // time2
+            String time2 = "";
+            if(hour2 < 10) {
+                time2 += "0";
+            }
+            time2 += hour2 + ":";
             if(minute2 < 10) {
                 time2 += "0" ;
             }

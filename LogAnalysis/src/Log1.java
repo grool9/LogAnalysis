@@ -7,32 +7,38 @@ import org.apache.hadoop.mapreduce.*;
 
 public class Log1 {
     public static class Log1Mapper extends Mapper<Object, Text, Text, Text> {
+        Text keyWord = new Text();
+        Text valueWord = new Text();
+        Text valueCount = new Text("1");
+
         public void map(Object key, Text value, Context context)
                 throws IOException, InterruptedException {
-            Text keyWord = new Text();
-            Text valueWord = new Text();
-            Text valueCount = new Text("1");
-
             String line = value.toString();
             String[] tokens = line.split("\\s+");
-            int number = tokens.length;
 
             // get time
-            int hour = Integer.parseInt(tokens[1].split(":")[1]);
-            String time1 = hour + "";
-            String time2 = (hour + 1) % 24 + "";
-            String time = time1 + ":00-" + time2 + ":00";
-            // get state
-            String state = tokens[number-3];
+            int hour1 = Integer.parseInt(tokens[1].split(":")[1]);
+            int hour2 = (hour1 + 1) % 24;
 
-            // each hour
+            String t = "";
+            if(hour1 < 10) t = "0";
+            String time1 = t + hour1;
+            t = "";
+            if(hour2 < 10) t = "0";
+            String time2 = t + hour2;
+            String time = time1 + ":00-" + time2 + ":00";
+
+            // get state
+            String state = tokens[tokens.length-3];
+
+            // ;time, state:1
             String kString = ";" + time;
-            String vString = state + ":" + valueCount.toString();
+            String vString = state + ":1";
             keyWord.set(kString);
             valueWord.set(vString);
             context.write(keyWord, valueWord);
 
-            // all time
+            // state, 1
             keyWord.set(state);
             context.write(keyWord, valueCount);
         }
