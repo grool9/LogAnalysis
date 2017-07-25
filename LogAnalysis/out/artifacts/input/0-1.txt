@@ -1,0 +1,2 @@
+www.baidu.com 3 2
+www.google.com 1 0

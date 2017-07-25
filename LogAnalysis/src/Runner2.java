@@ -17,9 +17,9 @@ public class Runner2 {
     public static void main(String[] args) throws Exception {
         Path in = new Path(args[0]);
         Path out = new Path(args[1]);
-
-        Path out1 = new Path("tmp1");
-        Path out2 = new Path("tmp2");
+//
+//        Path out1 = new Path("tmp1");
+//        Path out2 = new Path("tmp2");
 
         FileSystem fileSystem = FileSystem.get(new URI(in.toString()), new Configuration());
 
@@ -65,24 +65,25 @@ public class Runner2 {
 //        FileOutputFormat.setOutputPath(job, out);
 //        job.waitForCompletion(true);
 
-        // predict
+        // valuate
         Configuration conf2 = new Configuration();
         Job job2 = Job.getInstance(conf2, "Validate");
         job2.setJarByClass(Validate.class);
         job2.setMapperClass(Validate.MyMapper.class);
+        job2.setCombinerClass(Validate.MyCombiner.class);
         job2.setReducerClass(Validate.MyReducer.class);
         job2.setOutputKeyClass(Text.class);
         job2.setOutputValueClass(Text.class);
 
         // input
         FileInputFormat.setInputDirRecursive(job2, true);
-        FileInputFormat.addInputPath(job2, out);
+        FileInputFormat.addInputPath(job2, in);
         // output
         job2.setOutputFormatClass(MultipleOutputFormat.class);
-        if (fileSystem.exists(out2)) {
-            fileSystem.delete(out2, true);
+        if (fileSystem.exists(out)) {
+            fileSystem.delete(out, true);
         }
-        FileOutputFormat.setOutputPath(job2, out2);
+        FileOutputFormat.setOutputPath(job2, out);
         job2.waitForCompletion(true);
     }
 }
