@@ -3,6 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/LogAnalysis</output-path>
     <root id="archive" name="LogAnalysis.jar">
       <element id="module-output" name="LogAnalysis" />
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="weka" />
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>

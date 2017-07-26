@@ -60,7 +60,8 @@ public class Validate {
                 fenmu += Double.parseDouble(tokens[1]);
             }
 
-            result += fenzi / fenmu;
+            //result += fenzi / fenmu;
+            result += Math.sqrt(fenzi / fenmu);
         }
 
         public void cleanup(Context context) throws IOException, InterruptedException {
