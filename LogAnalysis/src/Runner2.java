@@ -21,6 +21,7 @@ public class Runner2 {
         Path out1 = new Path("tmp1");
         Path out2 = new Path("tmp2");
         Path out3 = new Path("tmp3");
+        Path out4 = new Path("validate_score");
 
         FileSystem fileSystem = FileSystem.get(new URI(in.toString()), new Configuration());
 
@@ -99,10 +100,31 @@ public class Runner2 {
         FileInputFormat.addInputPath(job2, out3);
         // output
         job2.setOutputFormatClass(MultipleOutputFormat.class);
+        if (fileSystem.exists(out4)) {
+            fileSystem.delete(out4, true);
+        }
+        FileOutputFormat.setOutputPath(job2, out4);
+        job2.waitForCompletion(true);
+
+
+        // predict output format modify
+        Configuration conf4 = new Configuration();
+        Job job3 = Job.getInstance(conf4, "Predict_Output");
+        job3.setJarByClass(Log5.class);
+        job3.setMapperClass(Log5.MyMapper.class);
+        job3.setReducerClass(Log5.MyReducer.class);
+        job3.setOutputKeyClass(Text.class);
+        job3.setOutputValueClass(Text.class);
+
+        // input
+        FileInputFormat.setInputDirRecursive(job3, true);
+        FileInputFormat.addInputPath(job3, out3);
+        // output
+        job3.setOutputFormatClass(MultipleOutputFormat.class);
         if (fileSystem.exists(out)) {
             fileSystem.delete(out, true);
         }
-        FileOutputFormat.setOutputPath(job2, out);
-        job2.waitForCompletion(true);
+        FileOutputFormat.setOutputPath(job3, out);
+        job3.waitForCompletion(true);
     }
 }

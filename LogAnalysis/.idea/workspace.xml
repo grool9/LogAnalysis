@@ -18,31 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Runner2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Runner2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Runner2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1250">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Runner1.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Runner1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1061">
-              <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PredictGlobal.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PredictGlobal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2478">
-              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="-21">
+              <caret line="105" column="47" lean-forward="true" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -87,13 +67,13 @@
         <option value="$PROJECT_DIR$/src/RMSE.java" />
         <option value="$PROJECT_DIR$/src/Validate.java" />
         <option value="$PROJECT_DIR$/src/DataPre1.java" />
-        <option value="$PROJECT_DIR$/src/Log5.java" />
         <option value="$PROJECT_DIR$/src/DataPre2.java" />
-        <option value="$PROJECT_DIR$/src/Runner2.java" />
         <option value="$PROJECT_DIR$/src/Predict.java" />
         <option value="$PROJECT_DIR$/src/Log1.java" />
         <option value="$PROJECT_DIR$/src/Log3.java" />
         <option value="$PROJECT_DIR$/src/Log4.java" />
+        <option value="$PROJECT_DIR$/src/Log5.java" />
+        <option value="$PROJECT_DIR$/src/Runner2.java" />
       </list>
     </option>
   </component>
@@ -106,8 +86,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
     <option name="y" value="31" />
-    <option name="width" value="1282" />
-    <option name="height" value="773" />
+    <option name="width" value="642" />
+    <option name="height" value="453" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -640,15 +620,15 @@
       <workItem from="1500979515759" duration="4673000" />
       <workItem from="1501065766147" duration="7093000" />
       <workItem from="1501077407591" duration="8463000" />
-      <workItem from="1501154194317" duration="1600000" />
+      <workItem from="1501154194317" duration="4602000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103713000" />
+    <option name="totallyTimeSpent" value="106715000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="31" width="1282" height="773" extended-state="6" />
+    <frame x="-1" y="31" width="642" height="453" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -666,7 +646,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18671875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3734375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -964,14 +944,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Log5output.java" />
     <entry file="file://$PROJECT_DIR$/src/RMSE.java" />
-    <entry file="file://$PROJECT_DIR$/src/Validate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="55" column="23" lean-forward="false" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/hadoop_installs/hadoop-2.7.1/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.1.jar!/org/apache/hadoop/mapreduce/Mapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -979,19 +951,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Log5.java" />
     <entry file="file://$PROJECT_DIR$/src/Predict.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="70" column="48" lean-forward="false" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Log1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="118" column="36" lean-forward="false" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1040,26 +1003,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Runner2.java">
+    <entry file="file://$PROJECT_DIR$/src/Log1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1250">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Runner1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1061">
-          <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+        <state relative-caret-position="2268">
+          <caret line="118" column="36" lean-forward="false" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PredictGlobal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2478">
+        <state relative-caret-position="-903">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Runner1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="104" column="32" lean-forward="false" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Validate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="72" column="5" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="72" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Log5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Runner2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-21">
+          <caret line="105" column="47" lean-forward="true" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -1123,7 +1112,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
