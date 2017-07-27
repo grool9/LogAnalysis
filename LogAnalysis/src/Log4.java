@@ -32,6 +32,8 @@ public class Log4 {
 
             // get url
             String url = tokens[4];
+            if(url.charAt(url.length()-1) == '/')url = url.substring(0, url.length()-1);
+
             // get response time
             String rt = tokens[tokens.length - 1];
 

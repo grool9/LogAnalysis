@@ -49,7 +49,7 @@ public class Log1 {
             int sum = 0;
             int sum1 = 0;//200
             int sum2 = 0;//404
-            int sum3 = 0;//500
+            int sum3 = 0;//400
             boolean isEachHour = false;
 
             Text valueWord = new Text();
@@ -63,7 +63,7 @@ public class Log1 {
                     switch (tokens[0]) {
                         case "200": sum1 += 1; break;
                         case "404": sum2 += 1; break;
-                        case "500": sum3 += 1; break;
+                        case "400": sum3 += 1; break;
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class Log1 {
                 valueWord.set("404:" + sum2);
                 context.write(key, valueWord);
 
-                valueWord.set("500:" + sum3);
+                valueWord.set("400:" + sum3);
                 context.write(key, valueWord);
             }
         }
@@ -92,7 +92,7 @@ public class Log1 {
             int sum = 0;
             int sum1 = 0;//200
             int sum2 = 0;//404
-            int sum3 = 0;//500
+            int sum3 = 0;//400
             boolean isEachHour = false;
 
             for (Text value : values) {
@@ -106,7 +106,7 @@ public class Log1 {
                     switch (tokens[0]) {
                         case "200":sum1 += Integer.parseInt(tokens[1]); break;
                         case "404":sum2 += Integer.parseInt(tokens[1]); break;
-                        case "500":sum3 += Integer.parseInt(tokens[1]); break;
+                        case "400":sum3 += Integer.parseInt(tokens[1]); break;
                     }
                 }
             }
@@ -116,7 +116,7 @@ public class Log1 {
             }
             else {
                 String vString = key.toString().substring(1) + " 200:" + sum1 + " 404:"
-                        + sum2 + " 500:" + sum3;
+                        + sum2 + " 400:" + sum3;
                 valueWord.set(vString);
             }
             context.write(keyWord, valueWord);

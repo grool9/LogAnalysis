@@ -26,6 +26,8 @@ public class Log3 {
 
             // get url
             String url = tokens[4];
+            if(url.charAt(url.length()-1) == '/')url = url.substring(0, url.length()-1);
+
             // get time
             String[] timeToken = tokens[1].split(":");
 
