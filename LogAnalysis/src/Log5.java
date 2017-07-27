@@ -17,7 +17,9 @@ public class Log5 {
                 throws IOException, InterruptedException {
             // fileName --> get time
             FileSplit fileSplit = (FileSplit) context.getInputSplit();
-            String time = (fileSplit.getPath().getName().split("\\.txt"))[0];
+            String temp = (fileSplit.getPath().getName().split("\\.txt"))[0];
+            String[] t = temp.split("-");
+            String time = t[0] + ":00-" + t[1] + ":00";
 
             String line = value.toString();
             String[] tokens = line.split(" ");
